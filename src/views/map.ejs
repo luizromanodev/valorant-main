@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapas - Valorant</title>
+  <link href="/styles.css" rel="stylesheet">
+  <script>
+    // Função para exibir os detalhes do mapa ao clicar
+    function showMapDetails(map) {
+      const detailsDiv = document.getElementById('map-details');
+      detailsDiv.innerHTML = `
+        <h2 class="text-2xl font-bold mb-4">${map.displayName}</h2>
+        <img src="${map.splash}" alt="${map.displayName}" class="w-64 mb-4"/>
+        <p class="mb-2">Localização: ${map.coordinates}</p>
+      `;
+    }
+  </script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <div class="container mx-auto p-8">
+    <h1 class="text-4xl font-bold mb-8">Mapas de Valorant</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <% maps.forEach(map => { %>
+        <div class="block bg-white shadow-md rounded-lg p-6 text-center hover:bg-blue-500 hover:text-white transition-colors duration-300">
+          <h2 class="text-xl font-semibold"><%= map.displayName %></h2>
+          <img src="<%= map.displayIcon %>" alt="<%= map.displayName %>" class="w-32 mx-auto mb-4"/>
+          <button 
+            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700" 
+            onclick="showMapDetails(JSON.parse(decodeURIComponent('<%= encodeURIComponent(JSON.stringify(map)) %>')))">
+            Ver Detalhes
+          </button>
+        </div>
+      <% }) %>
+    </div>
+
+    <!-- Div para exibir os detalhes do mapa -->
+    <div id="map-details" class="mt-8 bg-white p-6 rounded shadow-md"></div>
+  </div>
+</body>
+</html>

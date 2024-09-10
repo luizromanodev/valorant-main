@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Armas - Valorant</title>
+  <link href="/styles.css" rel="stylesheet">
+  <script>
+    // Função para exibir os detalhes da arma ao clicar
+    function showWeaponDetails(weapon) {
+      const detailsDiv = document.getElementById('weapon-details');
+      detailsDiv.innerHTML = `
+        <h2 class="text-2xl font-bold mb-4">${weapon.displayName}</h2>
+        <img src="${weapon.displayIcon}" alt="${weapon.displayName}" class="w-64 mb-4"/>
+        <p class="mb-2">Categoria: ${weapon.category}</p>
+        <p class="mb-2">Preço: ${weapon.shopData?.cost || 'N/A'}</p>
+      `;
+    }
+  </script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <div class="container mx-auto p-8">
+    <h1 class="text-4xl font-bold mb-8">Armas de Valorant</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <% weapons.forEach(weapon => { %>
+        <div class="block bg-white shadow-md rounded-lg p-6 text-center hover:bg-blue-500 hover:text-white transition-colors duration-300">
+          <h2 class="text-xl font-semibold"><%= weapon.displayName %></h2>
+          <img src="<%= weapon.displayIcon %>" alt="<%= weapon.displayName %>" class="w-32 mx-auto mb-4"/>
+          <button 
+            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700" 
+            onclick="showWeaponDetails(JSON.parse(decodeURIComponent('<%= encodeURIComponent(JSON.stringify(weapon)) %>')))">
+            Ver Detalhes
+          </button>
+        </div>
+      <% }) %>
+    </div>
+
+    <!-- Div para exibir os detalhes da arma -->
+    <div id="weapon-details" class="mt-8 bg-white p-6 rounded shadow-md"></div>
+  </div>
+</body>
+</html>

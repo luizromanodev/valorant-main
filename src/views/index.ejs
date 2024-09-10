@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link href="/styles.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <div class="container mx-auto p-8">
+    <h1 class="text-4xl font-bold mb-8 text-center"><%= title %></h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <% items.forEach(item => { %>
+        <div class="block bg-white shadow-md rounded-lg p-6 text-center">
+          <h2 class="text-xl font-semibold"><%= item.displayName %></h2>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+
+</body>
+</html>

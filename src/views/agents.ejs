@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agentes - Valorant</title>
+  <link href="/styles.css" rel="stylesheet">
+  <script>
+    // Função para exibir os detalhes do agente ao clicar
+    function showAgentDetails(agent) {
+      const detailsDiv = document.getElementById('agent-details');
+      detailsDiv.innerHTML = `
+        <h2 class="text-2xl font-bold mb-4">${agent.displayName}</h2>
+        <img src="${agent.fullPortrait}" alt="${agent.displayName}" class="w-64 mb-4"/>
+        <p class="mb-2">${agent.description}</p>
+        <h3 class="font-bold mb-2">Função: ${agent.role.displayName}</h3>
+      `;
+    }
+  </script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <div class="container mx-auto p-8">
+    <h1 class="text-4xl font-bold mb-8">Agentes de Valorant</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <% agents.forEach(agent => { %>
+        <div class="block bg-white shadow-md rounded-lg p-6 text-center hover:bg-blue-500 hover:text-white transition-colors duration-300">
+          <h2 class="text-xl font-semibold"><%= agent.displayName %></h2>
+          <img src="<%= agent.displayIcon %>" alt="<%= agent.displayName %>" class="w-32 mx-auto mb-4"/>
+          <button 
+            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700" 
+            onclick="showAgentDetails(JSON.parse(decodeURIComponent('<%= encodeURIComponent(JSON.stringify(agent)) %>')))">
+            Ver Detalhes
+          </button>
+        </div>
+      <% }) %>
+    </div>
+
+    <!-- Div para exibir os detalhes do agente -->
+    <div id="agent-details" class="mt-8 bg-white p-6 rounded shadow-md"></div>
+  </div>
+</body>
+</html>
