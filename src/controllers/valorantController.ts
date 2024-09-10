@@ -3,7 +3,6 @@ import axios from 'axios';
 
 const BASE_URL = 'https://valorant-api.com/v1';
 
-// Função para obter dados dos agentes
 export const getAgents = async (req: Request, res: Response) => {
   try {
     const response = await axios.get('https://valorant-api.com/v1/agents');
@@ -15,7 +14,6 @@ export const getAgents = async (req: Request, res: Response) => {
   }
 };
 
-// Função para obter dados das armas
 export const getWeapons = async (req: Request, res: Response) => {
   try {
     const response = await axios.get('https://valorant-api.com/v1/weapons');
@@ -27,7 +25,6 @@ export const getWeapons = async (req: Request, res: Response) => {
   }
 };
 
-// Função para obter dados dos mapas
 export const getMaps = async (req: Request, res: Response) => {
   try {
     const response = await axios.get('https://valorant-api.com/v1/maps');
@@ -39,7 +36,6 @@ export const getMaps = async (req: Request, res: Response) => {
   }
 };
 
-// Função para obter dados das skins
 export const getSkins = async (req: Request, res: Response) => {
   try {
     const response = await axios.get('https://valorant-api.com/v1/weapons/skins');
